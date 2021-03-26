@@ -31,7 +31,8 @@ int main(){
     break;
     default:
     printf("Waiting son\n");
-      wait(&figlio);
+    int status;
+      wait(&status);
       printf("End wait\n");
       char line[MAXCHAR];
       while (fscanf(fp, "%[^\n] ", buf) != EOF) {
