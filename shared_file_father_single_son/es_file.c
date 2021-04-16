@@ -15,7 +15,7 @@ scrivere un programma in cui un padre e un figlio condividono un file aperto:
 
 int main(){
     FILE *fp = fopen("shared.txt", "r+");
-    char buf[MAXCHAR];
+    
     pid_t figlio = fork();
     switch (figlio)
     {
@@ -34,10 +34,12 @@ int main(){
     int status;
       wait(&status);
       printf("End wait\n");
-      char line[MAXCHAR];
+      char buf[MAXCHAR];
+      fseek(fp, 0, SEEK_SET);
       while (fscanf(fp, "%[^\n] ", buf) != EOF) {
         printf("> %s\n", buf);
     }
+    fclose(fp);
     }
     return 0;
 }
